@@ -1,0 +1,24 @@
+const mongoose=require('mongoose');
+const schema = mongoose.Schema({
+    first_name: { type: String, required: true },
+    last_name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    is_active: { type: Boolean, default: true },
+    phone_number: { type: String, required: false, default: null }
+},
+{
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    }
+});
+
+
+class Users extends mongoose.Model{
+ 
+
+}
+
+schema.loadClass(Users);
+module.exports=mongoose.model('Users',schema);
