@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-const config = require('../config');
+const fs= require('fs');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Barış', config });
-});
+let routes = fs.readdirSync(__dirname);
+
+
+for (let route of routes) {
+  if (route.includes(".js") && route !== "index.js") {
+    console.log("Registering route:", "/"+route.replace(".js",""));
+    router.use("/"+route.replace(".js",""), require("./"+route));
+  }
+}
+
 
 module.exports = router;

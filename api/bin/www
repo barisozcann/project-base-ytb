@@ -16,7 +16,7 @@ const Database=require("../db/Database");
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(PORT || '3000');
+var port = normalizePort(PORT);
 app.set('port', port);
 
 /**
